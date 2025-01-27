@@ -32,10 +32,10 @@ public class SecurityConfig {
     http
         .csrf(csrf -> csrf.disable())
         .authorizeHttpRequests(auth -> auth
-            .requestMatchers("/login", "/register", "/").permitAll()
-            .requestMatchers("/admin/**").hasRole("ADMIN")
-            .requestMatchers("/doctor/**").hasRole("DOCTOR")
-            .requestMatchers("/patient/**").hasRole("PATIENT")
+            .requestMatchers("/api/users/login", "/api/users/register", "/").permitAll()
+            .requestMatchers("/api/admin/**").hasRole("ADMIN")
+            .requestMatchers("/api/doctors/**").hasRole("DOCTOR")
+            .requestMatchers("/api/patients/**").hasRole("PATIENT")
             .anyRequest().authenticated())
         .formLogin(form -> form
             .permitAll())
