@@ -2,6 +2,8 @@ package com.healthcare.healthcare_management_system.security;
 
 import com.healthcare.healthcare_management_system.model.User;
 import com.healthcare.healthcare_management_system.repository.UserRepository;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -22,23 +24,21 @@ import java.util.Collections;
 @EnableWebSecurity
 public class SecurityConfig {
 
-  private final UserRepository userRepository;
-
-  public SecurityConfig(UserRepository userRepository) {
-    this.userRepository = userRepository;
-  }
+  @Autowired
+  private UserRepository userRepository;
 
   @Bean
   public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
     http
-        .csrf(csrf -> csrf.disable())
-        .authorizeHttpRequests(auth -> auth
-            .requestMatchers("/api/auth/login", "/api/auth/register", "/").permitAll()
-            .requestMatchers("/api/admin/**").hasRole("ADMIN")
-            .requestMatchers("/api/doctors/**").hasRole("DOCTOR")
-            .requestMatchers("/api/patients/**").hasRole("PATIENT")
-            .anyRequest().authenticated())
-        .httpBasic(Customizer.withDefaults()); // for basic authentication via username and password in the postman
+        .csrf(csrf -> csrf.disable());
+    // .authorizeHttpRequests(auth -> auth
+    // .requestMatchers("/api/auth/login", "/api/auth/register", "/").permitAll()
+    // .requestMatchers("/api/admin/**").hasRole("ADMIN")
+    // .requestMatchers("/api/doctors/**").hasRole("DOCTOR")
+    // .requestMatchers("/api/patients/**").hasRole("PATIENT")
+    // .anyRequest().authenticated());
+    // .httpBasic(Customizer.withDefaults()); // for basic authentication via
+    // username and password in the postman
 
     return http.build();
   }
