@@ -1,6 +1,7 @@
 package com.healthcare.healthcare_management_system.service;
 
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -56,5 +57,10 @@ public class PatientServiceTests {
   @AfterEach
   public void tearThis() {
     System.out.println("PatientServiceTests: AfterEach is called");
+  }
+
+  @AfterAll
+  public static void tear() {
+    System.out.println("PatientServiceTests: AfterAll is called");
   }
 }
