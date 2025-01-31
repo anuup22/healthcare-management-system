@@ -33,6 +33,7 @@ public class PatientServiceTests {
 
   @Test
   public void addPatient_returnsSavedPatient() {
+    System.out.println("PatientServiceTests: addPatient_returnsSavedPatient is called");
     // Arrange
     Patient patient = Patient.builder()
         .id(1L)
