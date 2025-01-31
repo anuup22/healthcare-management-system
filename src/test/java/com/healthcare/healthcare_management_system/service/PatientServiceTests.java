@@ -1,6 +1,7 @@
 package com.healthcare.healthcare_management_system.service;
 
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -18,6 +19,11 @@ public class PatientServiceTests {
 
   @InjectMocks
   PatientService patientService;
+
+  @BeforeAll
+  public static void setup() {
+    System.out.println("PatientServiceTests: BeforeAll is called");
+  }
 
   @Test
   public void addPatient_returnsSavedPatient() {
